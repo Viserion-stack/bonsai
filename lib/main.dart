@@ -1,3 +1,5 @@
+import 'package:bonsai_app/auth_data.dart';
+import 'package:bonsai_app/screens/account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
@@ -26,7 +28,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
+  final passwordController = TextEditingController();
+  final emailController = TextEditingController();
+  Map<String, String> _authLogin = {
+    'email': '',
+    'password': '',
+  };
+
+  void _tryLogin() {
+    if (emailController.text == authData[0].email &&
+        passwordController.text == authData[0].password) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AccountScreen(),
+          ));
+    } else
+      print('zly login lub haslo'); //Create snackbar here
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +122,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           height: 60.0,
-                          child: TextField(
+                          child: TextFormField(
+                            controller: emailController,
+                            onSaved: (value) {
+                              _authLogin['email'] = value;
+                            },
                             keyboardType: TextInputType.emailAddress,
                             style: TextStyle(color: Colors.white),
                             decoration: InputDecoration(
@@ -146,7 +169,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           height: 60.0,
-                          child: TextField(
+                          child: TextFormField(
+                            controller: passwordController,
+                            onSaved: (value) {
+                              _authLogin['password'] = value;
+                            },
                             obscureText: true,
                             style: TextStyle(color: Colors.white),
                             decoration: InputDecoration(
@@ -176,9 +203,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             //decoration: BoxDecoration(color: Colors.white60),
                             child: RaisedButton(
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(18.0),
-                                  side: BorderSide(color: Colors.green),),
-                              onPressed: () {},
+                                borderRadius: BorderRadius.circular(18.0),
+                                side: BorderSide(color: Colors.green),
+                              ),
+                              onPressed: _tryLogin,
+                                  
                               //color: Colors.white60,
                               child: Text(
                                 'Login',

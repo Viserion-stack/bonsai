@@ -1,3 +1,6 @@
+import '../screens/side_bar.dart';
+
+import '../screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 class Account extends StatefulWidget {
@@ -10,12 +13,15 @@ class Account extends StatefulWidget {
 }
 
 class _AccountState extends State<Account> {
-  Account user;
+  //Account user;
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        child: Text(user.username),
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          HomePage(),
+          SideBar(),
+        ],
       ),
     );
   }

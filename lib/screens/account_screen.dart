@@ -4,18 +4,16 @@ import 'package:bonsai_app/widget/account.dart';
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatefulWidget {
-  
-  
   @override
   _AccountScreenState createState() => _AccountScreenState();
 }
 
 class _AccountScreenState extends State<AccountScreen> {
-  //final List<Auth> loginList;
-  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: Colors.white,
-    body: Account('Robert','robert'),);
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Account(authData[0].username, authData[0].password),
+    );
   }
 }
