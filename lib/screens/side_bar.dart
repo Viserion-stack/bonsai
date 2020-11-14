@@ -1,7 +1,10 @@
 import 'dart:async';
 
+import 'package:bonsai_app/screens/home_page.dart';
+import 'package:bonsai_app/select_page.dart';
 import 'package:bonsai_app/widget/menu-sidebar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/rendering.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -56,6 +59,7 @@ class _SideBarState extends State<SideBar>
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    var index = Provider.of<SelectPage>(context, listen: true);
 
     return StreamBuilder<bool>(
         initialData: false,
@@ -112,14 +116,23 @@ class _SideBarState extends State<SideBar>
                         MenuSideBar(
                           icon: Icons.home,
                           title: 'Home',
+                          onTap: (){
+                            index.index = home; 
+                          },
                         ),
                         MenuSideBar(
                           icon: Icons.person,
                           title: 'My account',
+                          onTap: () {
+                            index.index = myAccount; 
+                          },
                         ),
                         MenuSideBar(
                           icon: Icons.looks,
                           title: 'My Others',
+                          onTap: (){
+                            index.index = home; 
+                          },
                         ),
                         Divider(
                           height: 64,
@@ -131,6 +144,9 @@ class _SideBarState extends State<SideBar>
                         MenuSideBar(
                           icon: Icons.settings,
                           title: 'Settings',
+                          onTap: (){
+                            index.index = home; 
+                          },
                         ),
                         MenuSideBar(
                           onTap: () {

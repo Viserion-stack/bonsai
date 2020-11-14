@@ -1,9 +1,22 @@
+//import 'dart:js';
+
 import 'package:bonsai_app/auth_data.dart';
+import 'package:bonsai_app/select_page.dart';
+import 'package:provider/provider.dart';
 import 'package:bonsai_app/screens/account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            builder: (context) => SelectPage(),
+          )
+        ],
+        child: MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   @override
@@ -38,6 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _tryLogin() {
     if (emailController.text == authData[0].email &&
         passwordController.text == authData[0].password) {
+          
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -207,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 side: BorderSide(color: Colors.green),
                               ),
                               onPressed: _tryLogin,
-                                  
+
                               //color: Colors.white60,
                               child: Text(
                                 'Login',
