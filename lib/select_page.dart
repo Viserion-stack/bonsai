@@ -2,7 +2,7 @@ import 'package:bonsai_app/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 class SelectPage extends ChangeNotifier {
-  int _index;
+  int _index = 0;
 
   get index => _index;
   set index(int value) {
