@@ -36,7 +36,8 @@ class NewsData {
   NewsData(
     id: 'n4',
     description: 'The inhabitants of the Land of the Rising Sun, according to the recipes passed down through the centuries, miniaturize trees and shrubs by placing them in flat containers.',
-    imageUrl: 'https://lh3.googleusercontent.com/proxy/kY2DyZpoJY9ui4LD5bUncsd98QGsy7wjFTt9sHE93SCKrCdRUHcvqd9SdnOPQWlWXzXyibihtOw_lm3iD0um-iSpxoBDbLoNphD-rE06gHG8QTE7iLWy1G8NHzmcCPI_U0ZLxE5XWTNOwM1wkuoGMly9Cw',
+    imageUrl: 'https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/article_show_cover/so/7561335-okaz-bonsai-uformowany-z-jalowca-przez-caly-rok-zdobi.jpeg',
     isFavorite: false, 
+    
   ),
 ];
