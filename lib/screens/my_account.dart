@@ -1,8 +1,5 @@
 import 'package:bonsai_app/auth_data.dart';
-<<<<<<< HEAD
 import 'package:bonsai_app/model/news_data.dart';
-=======
->>>>>>> 41f74b169227b80d2f7b263f60b2b5d97243908a
 import 'package:flutter/material.dart';
 
 class MyAccount extends StatelessWidget {
@@ -21,40 +18,37 @@ class MyAccount extends StatelessWidget {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 50, bottom: 20),
-                        child: Container(
-                            child: Text(
-                          authData[0].username,
-                          style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.w800),
-                        )),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 50, bottom: 20),
+                          child: Container(
+                              child: Text(
+                            authData[0].username,
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.w800),
+                          )),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 110, right: 5, bottom: 20),
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.add),
+                            iconSize: 40,
+                          ),
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-<<<<<<< HEAD
-                            left: 150, right: 10, bottom: 20),
-=======
-                            left: 170, right: 10, bottom: 20),
->>>>>>> 41f74b169227b80d2f7b263f60b2b5d97243908a
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.add),
-                          iconSize: 40,
+                          bottom: 20,
                         ),
-<<<<<<< HEAD
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20, left: 10),
                         child: IconButton(
                           onPressed: () {},
                           icon: Icon(Icons.menu),
                           iconSize: 40,
                         ),
                       ),
-=======
-                      )
->>>>>>> 41f74b169227b80d2f7b263f60b2b5d97243908a
                     ],
                   ),
                   Container(
@@ -62,23 +56,15 @@ class MyAccount extends StatelessWidget {
                       radius: 60,
                       backgroundColor: Colors.transparent,
                       backgroundImage: NetworkImage(
-<<<<<<< HEAD
                           'https://youraverageguystyle.com/wp-content/uploads/2018/10/Mens-Fashion-Blogger-ASOS-Grey-T-Shirt-Aviators-Teal-Orange.jpg'),
-=======
-                          'https://i.pinimg.com/originals/a7/56/66/a7566642c351dabd925330d702e95066.jpg'),
->>>>>>> 41f74b169227b80d2f7b263f60b2b5d97243908a
                     ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
-<<<<<<< HEAD
                   GestureDetector(
                     onTap: () {},
                     child: Container(
-=======
-                  Container(
->>>>>>> 41f74b169227b80d2f7b263f60b2b5d97243908a
                       margin: const EdgeInsets.all(20.0),
                       padding: const EdgeInsets.only(right: 40.0, left: 40.0),
                       child: Text(
@@ -93,7 +79,6 @@ class MyAccount extends StatelessWidget {
                           Radius.circular(10),
                         ),
                         border: Border.all(width: 1.0),
-<<<<<<< HEAD
                       ),
                     ),
                   ),
@@ -117,9 +102,6 @@ class MyAccount extends StatelessWidget {
                       ),
                     ),
                   ),
-=======
-                      ))
->>>>>>> 41f74b169227b80d2f7b263f60b2b5d97243908a
                 ],
               ),
             ),
