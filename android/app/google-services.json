@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "806337458621",
+    "firebase_url": "https://bonsai-f82fd.firebaseio.com",
+    "project_id": "bonsai-f82fd",
+    "storage_bucket": "bonsai-f82fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:806337458621:android:1108d7ee61fb5d6e5de2d4",
+        "android_client_info": {
+          "package_name": "com.example.bonsai_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "806337458621-49duop105uobd6fml8hjihik4gp2m5vk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYjmiD6UJouElYNrft8uiphofj4932ORA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "806337458621-49duop105uobd6fml8hjihik4gp2m5vk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
