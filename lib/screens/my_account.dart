@@ -29,7 +29,6 @@ class MyAccount extends StatelessWidget {
                           )),
                         ),
                       ),
-<<<<<<< HEAD
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.only(left: 110, right: 5, bottom: 20),
@@ -38,15 +37,6 @@ class MyAccount extends StatelessWidget {
                             icon: Icon(Icons.add),
                             iconSize: 40,
                           ),
-=======
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 150, right: 10, bottom: 20),
-                        child: IconButton(
-                          onPressed: () {},
-                          icon: Icon(Icons.add),
-                          iconSize: 40,
->>>>>>> 8dc5a9530263119ec11d78bb1d50d805220942a7
                         ),
                       ),
                       Padding(
