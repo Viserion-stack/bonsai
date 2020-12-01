@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:bonsai_app/screens/account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() => runApp(
       MultiProvider(
@@ -41,8 +42,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final _keyFormEmail = GlobalKey<FormState>();
+  final _keyFormPass = GlobalKey<FormState>();
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
+
+  String _userEmail = '';
+  String _userPassword = '';
+  //String _userName = '';
+
   Map<String, String> _authLogin = {
     'email': '',
     'password': '',
@@ -51,7 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void _tryLogin() {
     if (emailController.text == authData[0].email &&
         passwordController.text == authData[0].password) {
-          
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -59,6 +66,17 @@ class _MyHomePageState extends State<MyHomePage> {
           ));
     } else
       print('zly login lub haslo'); //Create snackbar here
+  }
+
+  void _trySubmit() {
+    final isValidEmail = _keyFormEmail.currentState.validate();
+    final isValidPass = _keyFormPass.currentState.validate();
+    FocusScope.of(context).unfocus();
+
+    if (isValidEmail && isValidPass) {
+      _keyFormEmail.currentState.save();
+      _keyFormPass.currentState.save();
+    }
   }
 
   @override
@@ -136,23 +154,33 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           height: 60.0,
-                          child: TextFormField(
-                            controller: emailController,
-                            onSaved: (value) {
-                              _authLogin['email'] = value;
-                            },
-                            keyboardType: TextInputType.emailAddress,
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.only(
-                                top: 14.0,
+                          child: Form(
+                            key: _keyFormEmail,
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value.isEmpty || !value.contains('@')) {
+                                  return 'Please enter a valid email address';
+                                }
+                                return null;
+                              },
+                              //controller: emailController,
+                              onSaved: (value) {
+                                //_authLogin['email'] = value;
+                                _userEmail = value;
+                              },
+                              keyboardType: TextInputType.emailAddress,
+                              style: TextStyle(color: Colors.white),
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.only(
+                                  top: 14.0,
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.email,
+                                  color: Colors.white,
+                                ),
+                                hintText: 'Enter your Email',
                               ),
-                              prefixIcon: Icon(
-                                Icons.email,
-                                color: Colors.white,
-                              ),
-                              hintText: 'Enter your Email',
                             ),
                           ),
                         ),
@@ -183,23 +211,33 @@ class _MyHomePageState extends State<MyHomePage> {
                             ],
                           ),
                           height: 60.0,
-                          child: TextFormField(
-                            controller: passwordController,
-                            onSaved: (value) {
-                              _authLogin['password'] = value;
-                            },
-                            obscureText: true,
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              contentPadding: EdgeInsets.only(
-                                top: 14.0,
+                          child: Form(
+                            key: _keyFormPass,
+                            child: TextFormField(
+                              validator: (value) {
+                                if (value.isEmpty || value.length < 6) {
+                                  return 'Password must be at  least 6 characters long';
+                                }
+                                return null;
+                              },
+                              //controller: passwordController,
+                              onSaved: (value) {
+                                //_authLogin['password'] = value;
+                                _userEmail = value;
+                              },
+                              obscureText: true,
+                              style: TextStyle(color: Colors.white),
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                contentPadding: EdgeInsets.only(
+                                  top: 14.0,
+                                ),
+                                prefixIcon: Icon(
+                                  Icons.lock,
+                                  color: Colors.white,
+                                ),
+                                hintText: 'Enter your Password',
                               ),
-                              prefixIcon: Icon(
-                                Icons.lock,
-                                color: Colors.white,
-                              ),
-                              hintText: 'Enter your Password',
                             ),
                           ),
                         ),
@@ -220,7 +258,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 borderRadius: BorderRadius.circular(18.0),
                                 side: BorderSide(color: Colors.green),
                               ),
-                              onPressed: _tryLogin,
+                              onPressed: _trySubmit,
 
                               //color: Colors.white60,
                               child: Text(
