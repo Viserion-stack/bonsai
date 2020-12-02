@@ -7,7 +7,10 @@ import 'package:bonsai_app/screens/account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+<<<<<<< HEAD
 import 'package:firebase_auth/firebase_auth.dart';
+=======
+>>>>>>> 9407108f59f171df231f36b98d8c48f50a22d309
 
 void main() => runApp(
       MultiProvider(
