@@ -1,5 +1,6 @@
 import 'package:bonsai_app/auth_data.dart';
 import 'package:bonsai_app/model/news_data.dart';
+import 'package:bonsai_app/screens/add_post_screen.dart';
 import 'package:flutter/material.dart';
 
 class MyAccount extends StatelessWidget {
@@ -31,9 +32,16 @@ class MyAccount extends StatelessWidget {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.only(left: 110, right: 5, bottom: 20),
+                          padding: const EdgeInsets.only(
+                              left: 110, right: 5, bottom: 20),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AddPostScreen()),
+                              );
+                            },
                             icon: Icon(Icons.add),
                             iconSize: 40,
                           ),

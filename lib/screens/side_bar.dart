@@ -118,20 +118,23 @@ class _SideBarState extends State<SideBar>
                           title: 'Home',
                           onTap: (){
                             index.index = home; 
+                            onIconPressed();
                           },
                         ),
                         MenuSideBar(
                           icon: Icons.person,
                           title: 'My account',
                           onTap: () {
-                            index.index = myAccount; 
+                            index.index = myAccount;
+                            onIconPressed();
                           },
                         ),
                         MenuSideBar(
                           icon: Icons.looks,
                           title: 'My Others',
                           onTap: (){
-                            index.index = home; 
+                            index.index = home;
+                            onIconPressed(); 
                           },
                         ),
                         Divider(
@@ -145,7 +148,8 @@ class _SideBarState extends State<SideBar>
                           icon: Icons.settings,
                           title: 'Settings',
                           onTap: (){
-                            index.index = home; 
+                            index.index = home;
+                            onIconPressed(); 
                           },
                         ),
                         MenuSideBar(

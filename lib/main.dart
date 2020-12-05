@@ -164,7 +164,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   }
                                   return null;
                                 },
-                                //controller: emailController,
+                                controller: emailController,
                                 onSaved: (value) {
                                   //_authLogin['email'] = value;
                                   _userEmail = value;
@@ -221,7 +221,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   }
                                   return null;
                                 },
-                                //controller: passwordController,
+                                controller: passwordController,
                                 onSaved: (value) {
                                   //_authLogin['password'] = value;
                                   _userEmail = value;
@@ -259,7 +259,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   borderRadius: BorderRadius.circular(18.0),
                                   side: BorderSide(color: Colors.green),
                                 ),
-                                onPressed: _trySubmit,
+                                onPressed: _tryLogin,
 
                                 //color: Colors.white60,
                                 child: Text(
