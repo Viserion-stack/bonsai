@@ -1,15 +1,16 @@
 import 'dart:async';
 
+import 'package:bonsai_app/screens/chat_screen.dart';
 import 'package:bonsai_app/screens/home_page.dart';
 import 'package:bonsai_app/select_page.dart';
-import 'package:bonsai_app/widget/menu-sidebar.dart';
+import 'package:bonsai_app/widgets/menu-sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/rendering.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../auth_data.dart';
-import '../main.dart';
+
 
 class SideBar extends StatefulWidget {
   @override
@@ -157,7 +158,7 @@ class _SideBarState extends State<SideBar>
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => MyHomePage(),
+                                  builder: (context) => ChatScreen(),
                                 ));
                           },
                           icon: Icons.exit_to_app,

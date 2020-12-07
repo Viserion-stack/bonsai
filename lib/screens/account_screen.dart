@@ -1,6 +1,6 @@
 import 'package:bonsai_app/auth_data.dart';
 import 'package:bonsai_app/model/auth.dart';
-import 'package:bonsai_app/widget/account.dart';
+import 'package:bonsai_app/widgets/account.dart';
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatefulWidget {

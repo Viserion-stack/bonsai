@@ -1,34 +1,33 @@
 {
   "project_info": {
-    "project_number": "806337458621",
-    "firebase_url": "https://bonsai-f82fd.firebaseio.com",
-    "project_id": "bonsai-f82fd",
-    "storage_bucket": "bonsai-f82fd.appspot.com"
+    "project_number": "771090042687",
+    "project_id": "my-bonsai-app",
+    "storage_bucket": "my-bonsai-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:806337458621:android:1108d7ee61fb5d6e5de2d4",
+        "mobilesdk_app_id": "1:771090042687:android:f34b2af699e65f3945cd8a",
         "android_client_info": {
           "package_name": "com.example.bonsai_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "806337458621-49duop105uobd6fml8hjihik4gp2m5vk.apps.googleusercontent.com",
+          "client_id": "771090042687-e6v02ato0aelkp7s1i3tem1fij9kranr.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAYjmiD6UJouElYNrft8uiphofj4932ORA"
+          "current_key": "AIzaSyBety1o23Bgj3TvS7THBzG0rHqQ1axQOxI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "806337458621-49duop105uobd6fml8hjihik4gp2m5vk.apps.googleusercontent.com",
+              "client_id": "771090042687-e6v02ato0aelkp7s1i3tem1fij9kranr.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
