@@ -4,7 +4,26 @@ import 'package:bonsai_app/screens/add_post_screen.dart';
 import 'package:flutter/material.dart';
 
 class MyAccount extends StatelessWidget {
+  void _onPressedBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+            height: 180,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                    topLeft: const Radius.circular(20),
+                    topRight: const Radius.circular(20),
+                  )),
+              child: Center(
+                child: Text("Welcome to AndroidVille!"),
+              ));
+        });
+  }
+
   final imageView = DUMMY_NEWS;
+
   @override
   Widget build(BuildContext context) {
     return Row(children: <Widget>[
@@ -52,7 +71,7 @@ class MyAccount extends StatelessWidget {
                           bottom: 20,
                         ),
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () => _onPressedBottomSheet(context),
                           icon: Icon(Icons.menu),
                           iconSize: 40,
                         ),
