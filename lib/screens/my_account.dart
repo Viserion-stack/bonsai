@@ -8,6 +8,34 @@ class MyAccount extends StatelessWidget {
   static const routeName = '/myAccount';
   final  userName = FirebaseFirestore.instance.collection('users').doc('username').get();
   final imageView = DUMMY_NEWS;
+
+  void _onPressedBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container(
+              width: MediaQuery.of(context).size.width,
+              height: 180,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).canvasColor,
+                  borderRadius: BorderRadius.only(
+                    topLeft: const Radius.circular(20),
+                    topRight: const Radius.circular(20),
+                  )),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    child: Icon(Icons.arrow_drop_down),
+                  ),
+                  Center(
+                    child: Text("Welcome to AndroidVille!"),
+                  ),
+                ],
+              ));
+        });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +85,7 @@ class MyAccount extends StatelessWidget {
                             bottom: 20,
                           ),
                           child: IconButton(
-                            onPressed: () {},
+                            onPressed: () => _onPressedBottomSheet(context),
                             icon: Icon(Icons.menu),
                             iconSize: 40,
                           ),
