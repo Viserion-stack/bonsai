@@ -3,10 +3,15 @@ import 'package:bonsai_app/screens/add_post_screen.dart';
 import 'package:flutter/material.dart';
 import '../widgets/app_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'account_screen.dart';
 
 class MyAccount extends StatelessWidget {
   static const routeName = '/myAccount';
-  final  userName = FirebaseFirestore.instance.collection('users').doc('username').get();
+
+  
+  //final userData =  FirebaseFirestore.instance.collection('users').doc(uid);
+
   final imageView = DUMMY_NEWS;
 
   void _onPressedBottomSheet(BuildContext context) {
@@ -28,16 +33,17 @@ class MyAccount extends StatelessWidget {
                     child: Icon(Icons.arrow_drop_down),
                   ),
                   Center(
-                    child: Text("Welcome to AndroidVille!"),
+                    child: Text('authData'),
                   ),
                 ],
               ));
         });
   }
 
-
   @override
   Widget build(BuildContext context) {
+    final uid =  FirebaseAuth.instance.currentUser.uid;
+    final userData = FirebaseFirestore.instance.collection('users').doc(uid).snapshots();
     return Scaffold(
       body: Row(children: <Widget>[
         Expanded(
@@ -56,11 +62,12 @@ class MyAccount extends StatelessWidget {
                             padding:
                                 const EdgeInsets.only(left: 50, bottom: 20),
                             child: Container(
-                                child: Text(
-                              userName.toString(), //authData[0].username,
-                              style: TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.w800),
-                            )),
+                              child: Text(
+                                userData.toString(),
+                                style: TextStyle(
+                                    fontSize: 24, fontWeight: FontWeight.w800),
+                              ),
+                            ),
                           ),
                         ),
                         Expanded(
@@ -69,6 +76,7 @@ class MyAccount extends StatelessWidget {
                                 left: 110, right: 5, bottom: 20),
                             child: IconButton(
                               onPressed: () {
+                                print(userData.toList());
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -151,7 +159,8 @@ class MyAccount extends StatelessWidget {
         )
       ]),
       drawer: AppDrawer(),
-      appBar: AppBar(backgroundColor: Colors.green,
+      appBar: AppBar(
+        backgroundColor: Colors.green,
         title: Container(
           padding: EdgeInsets.only(left: 45),
           child: Text(

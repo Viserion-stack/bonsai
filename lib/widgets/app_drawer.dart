@@ -9,7 +9,11 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
+<<<<<<< HEAD
         color: Colors.green[600],
+=======
+        color: Colors.green,
+>>>>>>> 4fc68c50d52e2c5d0027c6a071fa34d94dac0bc2
         child: Column(
           children: <Widget>[
             SizedBox(
@@ -25,7 +29,16 @@ class AppDrawer extends StatelessWidget {
                 ),
               ),
             ),
+<<<<<<< HEAD
             
+=======
+            // AppBar(
+            //   backgroundColor: Colors.green[900],
+            //   title:
+            //   automaticallyImplyLeading: false,
+            // ),
+            //Divider(),
+>>>>>>> 4fc68c50d52e2c5d0027c6a071fa34d94dac0bc2
             SingleChildScrollView(
               child: Container(
                 decoration: BoxDecoration(
