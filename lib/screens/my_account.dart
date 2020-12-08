@@ -123,8 +123,18 @@ class MyAccount extends StatelessWidget {
         )
       ]),
       drawer: AppDrawer(),
-      appBar: AppBar(
-        title: Text('MyAccount'),
+      appBar: AppBar(backgroundColor: Colors.green,
+        title: Container(
+          padding: EdgeInsets.only(left: 45),
+          child: Text(
+            'my account',
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'Pacifico',
+              fontSize: 40,
+            ),
+          ),
+        ),
       ),
     );
   }

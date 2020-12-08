@@ -5,14 +5,27 @@ import '../widgets/app_drawer.dart';
 
 class News extends StatelessWidget {
   final displayedNews = DUMMY_NEWS;
-   static const routeName = '/news';
+  static const routeName = '/news';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: AppDrawer(),
-      appBar: AppBar(title: Text('News'),),
-          body: ListView.builder(
+      appBar: AppBar(
+        title: Container(
+          padding: EdgeInsets.only(left: 95),
+          child: Text(
+            'news',
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: 'Pacifico',
+              fontSize: 40,
+            ),
+          ),
+        ),
+        backgroundColor: Colors.green,
+      ),
+      body: ListView.builder(
         itemCount: displayedNews.length,
         itemBuilder: (ctx, index) {
           return NewsItem(

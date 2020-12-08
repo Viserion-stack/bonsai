@@ -90,7 +90,7 @@ class _AuthFormState extends State<AuthForm> {
                           key: ValueKey('email'),
                           validator: (value) {
                             if (value.isEmpty || !value.contains('@')) {
-                              return 'Wprowadz poprawny adres Email';
+                              return 'Please enter a valid email address';
                             }
                             return null;
                           },
@@ -104,7 +104,7 @@ class _AuthFormState extends State<AuthForm> {
                             ),
                             filled: true,
                             hintText: 'Email',
-                            labelText: 'Adres Eamil',
+                            labelText: 'Address Eamil',
                             prefixIcon: Icon(
                               Icons.email,
                               color: Colors.white,
@@ -120,7 +120,7 @@ class _AuthFormState extends State<AuthForm> {
                             key: ValueKey('username'),
                             validator: (value) {
                               if (value.isEmpty || value.length < 4) {
-                                return 'Wprowadź przynajmniej 4 znaki';
+                                return 'Please enter 4 chars at least';
                               }
                               return null;
                             },
@@ -132,8 +132,8 @@ class _AuthFormState extends State<AuthForm> {
                                 ),
                               ),
                               filled: true,
-                              hintText: 'Nazwa',
-                              labelText: 'Nazwa urzytkownika',
+                              hintText: 'Username',
+                              labelText: 'Username',
                               prefixIcon: Icon(
                                 Icons.person,
                                 color: Colors.white,
@@ -148,7 +148,7 @@ class _AuthFormState extends State<AuthForm> {
                           key: ValueKey('password'),
                           validator: (value) {
                             if (value.isEmpty || value.length < 7) {
-                              return 'Hasłopowino zawierać przynajmniej 7 znaków.';
+                              return 'Password should contain 7 chars at least';
                             }
                             return null;
                           },
@@ -160,8 +160,8 @@ class _AuthFormState extends State<AuthForm> {
                               ),
                             ),
                             filled: true,
-                            hintText: 'Hasło',
-                            labelText: 'Hasło',
+                            hintText: 'Password',
+                            labelText: 'Password',
                             prefixIcon: Icon(
                               Icons.lock,
                               color: Colors.white,
@@ -182,7 +182,7 @@ class _AuthFormState extends State<AuthForm> {
                             ),
                             color: Colors.white70,
                             child: Text(
-                              _isLogin ? 'Zaloguj' : 'Zarejestruj ',
+                              _isLogin ? 'Sign in' : 'Sign up',
                               style: TextStyle(color: Colors.black),
                             ),
                             onPressed: _trySubmit,
@@ -191,8 +191,8 @@ class _AuthFormState extends State<AuthForm> {
                           FlatButton(
                             textColor: Theme.of(context).primaryColor,
                             child: Text(_isLogin
-                                ? 'Utwórz nowe konto'
-                                : 'Posiadam już konto'),
+                                ? 'Create new account'
+                                : 'Have account'),
                             color: Colors.black12,
                             onPressed: () {
                               setState(() {

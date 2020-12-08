@@ -1,4 +1,5 @@
 import 'package:bonsai_app/screens/account_screen.dart';
+import 'package:bonsai_app/screens/my_account.dart';
 import 'package:flutter/material.dart';
 
 class AddPostScreen extends StatelessWidget {
@@ -27,7 +28,7 @@ class AddPostScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => AccountScreen()),
+                              builder: (context) => MyAccount()),
                         );
                       },
                     ),
