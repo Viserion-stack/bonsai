@@ -4,6 +4,7 @@ import 'package:bonsai_app/screens/add_post_screen.dart';
 import 'package:flutter/material.dart';
 
 class MyAccount extends StatelessWidget {
+  
   void _onPressedBottomSheet(BuildContext context) {
     showModalBottomSheet(
         context: context,
