@@ -1,13 +1,15 @@
 import 'package:bonsai_app/screens/my_account.dart';
 import 'package:bonsai_app/screens/news.dart';
-import 'package:bonsai_app/screens/settings_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+     String uid = FirebaseAuth.instance.currentUser.uid;
+    var username ;
     return Drawer(
       child: Container(
         color: Colors.green,
@@ -17,13 +19,22 @@ class AppDrawer extends StatelessWidget {
               height: 20,
             ),
             Container(
-              child: Text(
-                'Hello Friend!',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontFamily: 'Pacifico',
-                  fontSize: 30,
-                ),
+              child: FutureBuilder(
+        future: FirebaseFirestore.instance.collection('users').doc(uid).get(),
+        builder: (context, snapshot) {
+          if(snapshot.connectionState == ConnectionState.waiting){
+            return Text('Loading');
+          }
+          username = snapshot.data['username'];
+          return Text(
+                  'Hello '+ username ,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Pacifico',
+                    fontSize: 30,
+                  ),
+                );
+                },
               ),
             ),
             // AppBar(
@@ -100,8 +111,6 @@ class AppDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
-                         Navigator.of(context)
-                            .pushReplacementNamed(SettingsScreen.routeName);
                         // Navigator.of(context)
                         //     .pushReplacementNamed(OrdersScreen.routeName);
                         // Navigator.of(context).pushReplacement(
