@@ -1,5 +1,6 @@
 import 'package:bonsai_app/screens/my_account.dart';
 import 'package:bonsai_app/screens/news.dart';
+import 'package:bonsai_app/screens/settings_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,11 +10,7 @@ class AppDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-<<<<<<< HEAD
-        color: Colors.green[600],
-=======
         color: Colors.green,
->>>>>>> 4fc68c50d52e2c5d0027c6a071fa34d94dac0bc2
         child: Column(
           children: <Widget>[
             SizedBox(
@@ -29,16 +26,12 @@ class AppDrawer extends StatelessWidget {
                 ),
               ),
             ),
-<<<<<<< HEAD
-            
-=======
             // AppBar(
             //   backgroundColor: Colors.green[900],
             //   title:
             //   automaticallyImplyLeading: false,
             // ),
             //Divider(),
->>>>>>> 4fc68c50d52e2c5d0027c6a071fa34d94dac0bc2
             SingleChildScrollView(
               child: Container(
                 decoration: BoxDecoration(
@@ -107,6 +100,8 @@ class AppDrawer extends StatelessWidget {
                         ),
                       ),
                       onTap: () {
+                         Navigator.of(context)
+                            .pushReplacementNamed(SettingsScreen.routeName);
                         // Navigator.of(context)
                         //     .pushReplacementNamed(OrdersScreen.routeName);
                         // Navigator.of(context).pushReplacement(
