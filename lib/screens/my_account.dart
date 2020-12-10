@@ -10,7 +10,7 @@ class MyAccount extends StatelessWidget {
 
   //final userData =  FirebaseFirestore.instance.collection('users').doc(uid);
 
-  final imageView = DUMMY_NEWS;
+  //final imageView = DUMMY_NEWS;
 
   void _onPressedBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -162,10 +162,10 @@ class MyAccount extends StatelessWidget {
                                 crossAxisSpacing: 2.0,
                                 mainAxisSpacing: 2.0,
                                 children: <Widget>[
-                                  Image.network(imageView[0].imageUrl),
-                                  Image.network(imageView[1].imageUrl),
-                                  Image.network(imageView[2].imageUrl),
-                                  Image.network(imageView[3].imageUrl),
+                                  // Image.network(imageView[0].imageUrl),
+                                  // Image.network(imageView[1].imageUrl),
+                                  // Image.network(imageView[2].imageUrl),
+                                  // Image.network(imageView[3].imageUrl),
                                 ],
                               ),
                             ),
