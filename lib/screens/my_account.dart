@@ -46,6 +46,9 @@ class MyAccount extends StatelessWidget {
       body: FutureBuilder(
         future: FirebaseFirestore.instance.collection('users').doc(uid).get(),
         builder: (context, snapshot) {
+             if(snapshot.connectionState == ConnectionState.waiting){
+            return Text('Loading');
+          }
           username = snapshot.data['username'];
           return Row(
             children: <Widget>[
