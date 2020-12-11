@@ -16,6 +16,17 @@ class _NewsState extends State<News> {
 
   @override
   Widget build(BuildContext context) {
+
+Future<int> countDocuments() async {
+    QuerySnapshot _myDoc = await FirebaseFirestore.instance.collection('posts').get();
+    List<DocumentSnapshot> _myDocCount = _myDoc.docs;
+    print('AAA');
+    print(_myDocCount.length); 
+    print("BBB");
+    return _myDocCount.length;
+   }
+  var len  = countDocuments();
+
     return Scaffold(
       drawer: AppDrawer(),
       appBar: AppBar(
@@ -32,30 +43,29 @@ class _NewsState extends State<News> {
         ),
         backgroundColor: Colors.green,
       ),
-       body: StreamBuilder(
+      body: StreamBuilder(
         stream: FirebaseFirestore.instance
-            .collection('posts').doc('YcjxgBuVxM99uAdYeJ2b')
+            .collection('posts')
             .snapshots(),
-        builder: (ctx, streamSnapshot) {
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot>streamSnapshot) {
           if (streamSnapshot.connectionState == ConnectionState.waiting) {
             return Center(
               child: CircularProgressIndicator(),
             );
           }
-          final documents = streamSnapshot.data;
-          return ListView.builder(
-            itemCount: documents.snapshot.value.length,
-            itemBuilder: (ctx, index) => NewsItem(
-            id: documents[index]['id'],
-            description: documents[index]['description'],
-            imageUrl: documents[index]['imageUrl'],
-            isFavorite: documents[index]['isFavorite'],),
-          
+               return ListView(
+            children: streamSnapshot.data.docs.map((document){
+              return NewsItem(
+              id: document.data()['id'],
+              description: document.data()['description'],
+              imageUrl: document.data()['imageUrl'],
+              isFavorite: document.data()['isFavorite'],
+            );
+            }).toList(),
+            
           );
         },
       ),
     );
   }
 }
-
-

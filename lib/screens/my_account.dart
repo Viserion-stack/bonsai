@@ -38,6 +38,14 @@ class MyAccount extends StatelessWidget {
         });
   }
 
+   void countDocuments() async {
+    QuerySnapshot _myDoc = await FirebaseFirestore.instance.collection('posts').get();
+    List<DocumentSnapshot> _myDocCount = _myDoc.docs;
+    print('AAA');
+    print(_myDocCount.length); 
+    print("BBB");
+   }
+
   @override
   Widget build(BuildContext context) {
     String uid = FirebaseAuth.instance.currentUser.uid;
@@ -83,6 +91,10 @@ class MyAccount extends StatelessWidget {
                                       left: 110, right: 5, bottom: 20),
                                   child: IconButton(
                                     onPressed: () {
+
+                                          countDocuments();
+
+                                      
                                       var firebaseUser =
                                           FirebaseAuth.instance.currentUser;
                                       FirebaseFirestore.instance
