@@ -26,7 +26,11 @@ class AppDrawer extends StatelessWidget {
                       .get(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text('Loading');
+                      return Text(' ',style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Pacifico',
+                        fontSize: 30,
+                      ),);
                     }
                     username = snapshot.data['username'];
                     return Text(
