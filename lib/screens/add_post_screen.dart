@@ -1,8 +1,31 @@
+import 'dart:io';
 import 'package:bonsai_app/screens/account_screen.dart';
 import 'package:bonsai_app/screens/my_account.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class AddPostScreen extends StatelessWidget {
+class AddPostScreen extends StatefulWidget {
+  @override
+  _AddPostScreenState createState() => _AddPostScreenState();
+}
+
+class _AddPostScreenState extends State<AddPostScreen> {
+  File _pickedImage;
+  bool isPhoto = false;
+
+  void _pickImage() async {
+    final pickedImageFile = await ImagePicker.pickImage(
+      source: ImageSource.camera,
+      imageQuality: 50,
+      maxWidth: 150,
+    );
+    setState(() {
+      _pickedImage = pickedImageFile;
+    });
+    isPhoto = true;
+    //widget.imagePickFn(pickedImageFile);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,12 +64,12 @@ class AddPostScreen extends StatelessWidget {
               Column(
                 children: <Widget>[
                   Container(
-                    decoration: BoxDecoration(color: Colors.grey[800]),
+                    decoration: BoxDecoration(color: Colors.grey[800],),
                     height: 300,
                     width: MediaQuery.of(context).size.width,
                     child: Center(
                       child: FlatButton(
-                        onPressed: (){},
+                        onPressed:  _pickImage,
                           child: Text(
                         'Add new photo',
                         style: TextStyle(color: Colors.white),
