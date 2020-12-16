@@ -26,7 +26,7 @@ class NewsItem extends StatelessWidget {
              snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-              child: Text(' Loading'),
+              child: Text(' '),
             );
           }
           

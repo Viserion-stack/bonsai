@@ -40,41 +40,41 @@ class _AuthFormState extends State<AuthForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(children: <Widget>[
-        Container(
-          height: MediaQuery.of(context).size.height,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.green[200],
-                Colors.green[400],
-                Colors.green,
-                Colors.green[600],
-              ],
+      body: SingleChildScrollView(
+        child: Stack(children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.green[200],
+                  Colors.green[400],
+                  Colors.green,
+                  Colors.green[600],
+                ],
+              ),
+            ),
+            padding: EdgeInsets.only(top: 100.0),
+            child: Text(
+              'bonsai',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontFamily: 'Pacifico',
+                fontSize: 130.0,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 2.6,
+              ),
             ),
           ),
-          padding: EdgeInsets.only(top: 100.0),
-          child: Text(
-            'bonsai',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Pacifico',
-              fontSize: 130.0,
-              fontWeight: FontWeight.bold,
-              letterSpacing: 2.6,
-            ),
-          ),
-        ),
-        Center(
-          child: Card(
-            elevation: 0,
-            color: Colors.transparent,
-            margin: EdgeInsets.all(20),
-            child: SingleChildScrollView(
+          Center(
+            child: Card(
+              elevation: 0,
+              color: Colors.transparent,
+              margin: EdgeInsets.all(20),
               child: Padding(
                 padding: EdgeInsets.all(16),
                 child: Column(children: <Widget>[
@@ -207,8 +207,8 @@ class _AuthFormState extends State<AuthForm> {
               ),
             ),
           ),
-        ),
-      ]),
+        ]),
+      ),
     );
   }
 }

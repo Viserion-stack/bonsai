@@ -37,24 +37,25 @@ class MyAccount extends StatelessWidget {
         });
   }
 
-   void countDocuments() async {
-    QuerySnapshot _myDoc = await FirebaseFirestore.instance.collection('posts').get();
+  void countDocuments() async {
+    QuerySnapshot _myDoc =
+        await FirebaseFirestore.instance.collection('posts').get();
     List<DocumentSnapshot> _myDocCount = _myDoc.docs;
     print('AAA');
-    print(_myDocCount.length); 
+    print(_myDocCount.length);
     print("BBB");
-   }
+  }
 
   @override
   Widget build(BuildContext context) {
     String uid = FirebaseAuth.instance.currentUser.uid;
-    var username ;
+    var username;
     return Scaffold(
       body: FutureBuilder(
         future: FirebaseFirestore.instance.collection('users').doc(uid).get(),
         builder: (context, snapshot) {
-             if(snapshot.connectionState == ConnectionState.waiting){
-            return Text('Loading');
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Text(' ');
           }
           username = snapshot.data['username'];
           return Row(
@@ -90,10 +91,8 @@ class MyAccount extends StatelessWidget {
                                       left: 110, right: 5, bottom: 20),
                                   child: IconButton(
                                     onPressed: () {
+                                      countDocuments();
 
-                                          countDocuments();
-
-                                      
                                       var firebaseUser =
                                           FirebaseAuth.instance.currentUser;
                                       FirebaseFirestore.instance
@@ -101,7 +100,7 @@ class MyAccount extends StatelessWidget {
                                           .doc(firebaseUser.uid)
                                           .get()
                                           .then((value) {
-                                       // print(value.data()["username"]);
+                                        // print(value.data()["username"]);
                                       });
 
                                       Navigator.push(
