@@ -1,5 +1,6 @@
 import 'package:bonsai_app/screens/my_account.dart';
 import 'package:bonsai_app/screens/news.dart';
+import 'package:bonsai_app/screens/settings_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -118,13 +119,8 @@ class AppDrawer extends StatelessWidget {
                           ),
                         ),
                         onTap: () {
-                          // Navigator.of(context)
-                          //     .pushReplacementNamed(OrdersScreen.routeName);
-                          // Navigator.of(context).pushReplacement(
-                          //   CustomRoute(
-                          //     builder: (ctx) => OrdersScreen(),
-                          //   ),
-                          // );
+                          Navigator.of(context)
+                              .pushReplacementNamed(SettingsScreen.routeName);
                         },
                       ),
                       Divider(),

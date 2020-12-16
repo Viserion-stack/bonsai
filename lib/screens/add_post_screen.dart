@@ -44,7 +44,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
     FirebaseFirestore.instance.collection('posts').doc().set({
       'id': '555',
-      'description': commentController.toString(),
+      'description': commentController.text.toString(),
       'imageUrl': url,
       'isFavorite': true,
      
