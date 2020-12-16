@@ -19,15 +19,15 @@ class _NewsState extends State<News> {
   Widget build(BuildContext context) {
     
 
-Future<int> countDocuments() async {
-    QuerySnapshot _myDoc = await FirebaseFirestore.instance.collection('posts').get();
-    List<DocumentSnapshot> _myDocCount = _myDoc.docs;
-    print('AAA');
-    print(_myDocCount.length); 
-    print("BBB");
-    return _myDocCount.length;
-   }
-  var len  = countDocuments();
+// Future<int> countDocuments() async {
+//     QuerySnapshot _myDoc = await FirebaseFirestore.instance.collection('posts').get();
+//     List<DocumentSnapshot> _myDocCount = _myDoc.docs;
+//     print('AAA');
+//     print(_myDocCount.length); 
+//     print("BBB");
+//     return _myDocCount.length;
+//    }
+//   var len  = countDocuments();
 
     return Scaffold(
       drawer: AppDrawer(),

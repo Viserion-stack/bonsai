@@ -1,4 +1,3 @@
-import 'package:bonsai_app/main.dart';
 import 'package:flutter/material.dart';
 
 class MenuSideBar extends StatelessWidget {

@@ -1,9 +1,8 @@
-
 import 'dart:io';
-import 'package:bonsai_app/screens/account_screen.dart';
 import 'package:bonsai_app/screens/my_account.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -31,16 +30,33 @@ class _AddPostScreenState extends State<AddPostScreen> {
     //widget.imagePickFn(pickedImageFile);
   }
 
-  void _addPost() {
-     //final user =  FirebaseAuth.instance.currentUser.uid;
-    // final userData =
-    //     await FirebaseFirestore.instance.collection('post').doc(user).get();
-    FirebaseFirestore.instance.collection('posts').add({
-      'descritpiom': commentController.toString(),
-      'imageUrl': _pickedImage,
+  Future<void> _addPost() async {
+    var firebaseUser = FirebaseAuth.instance.currentUser;
+
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child('posts')
+        .child(firebaseUser.uid + '.jpg');
+
+    await ref.putFile(_pickedImage);
+
+    final url = await ref.getDownloadURL();
+
+    FirebaseFirestore.instance.collection('posts').doc().set({
+      'id': '555',
+      'description': commentController.toString(),
+      'imageUrl': url,
       'isFavorite': true,
+     
     });
     commentController.clear();
+    print('Adding photo...');
+    Navigator.of(context).pop();
+  }
+  @override
+  void dispose() {
+    commentController.dispose();
+    super.dispose();
   }
 
   @override
@@ -91,7 +107,6 @@ class _AddPostScreenState extends State<AddPostScreen> {
                             child: Image.file(_pickedImage),
                             fit: BoxFit.fill,
                           ),
-                    
                   ),
                   Center(
                     child: FlatButton(
@@ -114,7 +129,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
                       //color: Colors.white,
                       width: MediaQuery.of(context).size.width,
                       height: 200,
-                      child: TextField(
+                      child: TextFormField(
+                        controller: commentController,
                         keyboardType: TextInputType.multiline,
                         maxLines: 20,
                         decoration: InputDecoration(
@@ -139,7 +155,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                               fontSize: 20,
                               fontWeight: FontWeight.bold),
                         ),
-                        onPressed: _addPost,
+                        onPressed: () => _addPost(),
                       ),
                     ),
                   ),

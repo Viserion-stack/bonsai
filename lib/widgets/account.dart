@@ -19,6 +19,7 @@ class _AccountState extends State<Account> {
   //Account user;
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     var index = Provider.of<SelectPage>(context, listen: true);
     return Scaffold(
       body: Stack(

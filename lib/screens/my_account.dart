@@ -1,4 +1,3 @@
-import 'package:bonsai_app/model/news_data.dart';
 import 'package:bonsai_app/screens/add_post_screen.dart';
 import 'package:flutter/material.dart';
 import '../widgets/app_drawer.dart';

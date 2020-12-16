@@ -19,18 +19,17 @@ class NewsItem extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final uid = FirebaseAuth.instance.currentUser.uid;
-    var pict;
-
+    var pict = 'https://youraverageguystyle.com/wp-content/uploads/2018/10/Mens-Fashion-Blogger-ASOS-Grey-T-Shirt-Aviators-Teal-Orange.jpg';
     return FutureBuilder(
         future: FirebaseFirestore.instance.collection('users').doc(uid).get(),
         builder: (context,
              snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
-              child: Text(' '),
+              child: Text(' Loading'),
             );
           }
-          pict = snapshot.data['userPicture'];
+          
           return InkWell(
             onTap: () {},
             child: Card(
