@@ -39,7 +39,7 @@ class _AuthFormState extends State<AuthForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: Colors.green[600],
       body: SingleChildScrollView(
         child: Stack(children: <Widget>[
           Container(

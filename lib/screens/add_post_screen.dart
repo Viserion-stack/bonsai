@@ -19,9 +19,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
   void _pickImage() async {
     final pickedImageFile = await ImagePicker.pickImage(
       source: ImageSource.camera,
-      imageQuality: 100,
-      maxWidth: 650,
-      maxHeight: 650,
+      imageQuality: 50,
+      maxWidth: 450,
+      maxHeight: 450,
     );
     setState(() {
       _pickedImage = pickedImageFile;
@@ -47,12 +47,12 @@ class _AddPostScreenState extends State<AddPostScreen> {
       'description': commentController.text.toString(),
       'imageUrl': url,
       'isFavorite': true,
-     
     });
     commentController.clear();
     print('Adding photo...');
     Navigator.of(context).pop();
   }
+
   @override
   void dispose() {
     commentController.dispose();
@@ -104,7 +104,10 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     child: _pickedImage == null
                         ? null
                         : FittedBox(
-                            child: Image.file(_pickedImage),
+                            child: Image.file(
+                              _pickedImage,
+                              scale: 50,
+                            ),
                             fit: BoxFit.fill,
                           ),
                   ),
