@@ -81,10 +81,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                         //color: Colors.white,
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => MyAccount()),
-                        );
+                        Navigator.of(context).pop();
                       },
                     ),
                   )

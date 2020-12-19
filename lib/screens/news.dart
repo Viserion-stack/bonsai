@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../widgets/app_drawer.dart';
+import 'add_post_screen.dart';
 
 class News extends StatefulWidget {
   static const routeName = '/news';
@@ -14,16 +15,14 @@ class News extends StatefulWidget {
 
 class _NewsState extends State<News> {
   //final displayedNews = DUMMY_NEWS;
-  
+
   @override
   Widget build(BuildContext context) {
-    
-
 // Future<int> countDocuments() async {
 //     QuerySnapshot _myDoc = await FirebaseFirestore.instance.collection('posts').get();
 //     List<DocumentSnapshot> _myDocCount = _myDoc.docs;
 //     print('AAA');
-//     print(_myDocCount.length); 
+//     print(_myDocCount.length);
 //     print("BBB");
 //     return _myDocCount.length;
 //    }
@@ -46,27 +45,33 @@ class _NewsState extends State<News> {
         backgroundColor: Colors.green,
       ),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection('posts')
-            .snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot>streamSnapshot) {
+        stream: FirebaseFirestore.instance.collection('posts').snapshots(),
+        builder: (BuildContext context,
+            AsyncSnapshot<QuerySnapshot> streamSnapshot) {
           if (streamSnapshot.connectionState == ConnectionState.waiting) {
             return Center(
               child: CircularProgressIndicator(),
             );
           }
-               return ListView(
-            children: streamSnapshot.data.docs.map((document){
+          return ListView(
+            children: streamSnapshot.data.docs.map((document) {
               return NewsItem(
-              id: document.data()['id'],
-              description: document.data()['description'],
-              imageUrl: document.data()['imageUrl'],
-              isFavorite: document.data()['isFavorite'],
-            );
+                id: document.data()['id'],
+                description: document.data()['description'],
+                imageUrl: document.data()['imageUrl'],
+                isFavorite: document.data()['isFavorite'],
+              );
             }).toList(),
-            
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AddPostScreen()));
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.green,
       ),
     );
   }
