@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../widgets/app_drawer.dart';
 import 'add_post_screen.dart';
 
-class News extends StatefulWidget {
+class News extends StatefulWidget { 
   static const routeName = '/news';
 
   @override
