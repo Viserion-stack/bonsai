@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:bonsai_app/screens/my_account.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,6 +33,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
   Future<void> _addPost() async {
     var firebaseUser = FirebaseAuth.instance.currentUser;
+    var rng = new Random();
+    var random = rng.nextInt(100);
 
     final ref = FirebaseStorage.instance
         .ref()
@@ -43,7 +46,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
     final url = await ref.getDownloadURL();
 
     FirebaseFirestore.instance.collection('posts').doc().set({
-      'id': '555',
+      'id': '$random',
       'description': commentController.text.toString(),
       'imageUrl': url,
       'isFavorite': true,

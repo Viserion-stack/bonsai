@@ -1,12 +1,14 @@
 import 'package:bonsai_app/model/news_data.dart';
+import 'package:bonsai_app/providers/settings.dart';
 import 'package:bonsai_app/widgets/news_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../widgets/app_drawer.dart';
 import 'add_post_screen.dart';
 
-class News extends StatefulWidget { 
+class News extends StatefulWidget {
   static const routeName = '/news';
 
   @override
@@ -15,20 +17,41 @@ class News extends StatefulWidget {
 
 class _NewsState extends State<News> {
   //final displayedNews = DUMMY_NEWS;
+  dynamic getSettings;
+  bool isDark = false;
+  bool isNotif = false;
+  final uid = FirebaseAuth.instance.currentUser.uid;
+  Future<dynamic> getData() async {
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection('users').doc(uid);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      setState(() {
+        isDark = snapshot.data()['isDark'];
+        isNotif = snapshot.data()['isNotifications'];
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
 
   @override
   Widget build(BuildContext context) {
-// Future<int> countDocuments() async {
-//     QuerySnapshot _myDoc = await FirebaseFirestore.instance.collection('posts').get();
-//     List<DocumentSnapshot> _myDocCount = _myDoc.docs;
-//     print('AAA');
-//     print(_myDocCount.length);
-//     print("BBB");
-//     return _myDocCount.length;
-//    }
-//   var len  = countDocuments();
+    final settings = Provider.of<SettingsUser>(context);
 
+    final uid = FirebaseAuth.instance.currentUser.uid;
+    FirebaseFirestore.instance.collection('users').doc(uid).get();
+    settings.setValues(
+      isDark,
+      isNotif,
+    );
+
+    //Try to write function to get data from data base (values of isDark and isNotifications)
     return Scaffold(
+      backgroundColor: isDark ? Color(0xFF303030) : Colors.white,
       drawer: AppDrawer(),
       appBar: AppBar(
         title: Container(
@@ -53,6 +76,9 @@ class _NewsState extends State<News> {
               child: CircularProgressIndicator(),
             );
           }
+
+          print('isDark '+isDark.toString());
+          print('isNotif '+isNotif.toString());
           return ListView(
             children: streamSnapshot.data.docs.map((document) {
               return NewsItem(

@@ -1,7 +1,9 @@
+import 'package:bonsai_app/providers/settings.dart';
 import 'package:bonsai_app/widgets/app_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const routeName = '/settings';
@@ -12,18 +14,23 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   final uid = FirebaseAuth.instance.currentUser.uid;
-    bool isDark = false;
-    bool isNotifications = false;
-    void _updateSettings() async {
-      FirebaseFirestore.instance.collection('users').doc(uid).update({
-        'isDark': isDark,
-        'isNotifications': isNotifications,
-      });
-    }
+  bool isDark = false;
+  bool isNotifications = false;
+  void _updateSettings() async {
+    FirebaseFirestore.instance.collection('users').doc(uid).update({
+      'isDark': isDark,
+      'isNotifications': isNotifications,
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-
+    final settings = Provider.of<SettingsUser>(context);
+    isDark = settings.isDark;
+    isNotifications = settings.isNotifications;
+    //Color colorDark = Color()
     return Scaffold(
+      backgroundColor: isDark ? Color(0xFF303030) : Colors.white,
       body: Container(
         child: Column(
           children: [
@@ -34,12 +41,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
               activeColor: Colors.green[600],
               title: const Text(
                 'Dark screen',
-                style: TextStyle(fontSize: 26),
+                style: TextStyle(
+                  fontSize: 26,
+                  //color: ,
+                ),
               ),
               value: isDark,
-              onChanged: (bool value) {
+              onChanged: (bool values) {
                 setState(() {
-                  isDark = value;
+                  settings.isDark = values;
+                  isDark = values;
                   _updateSettings();
                 });
               },
@@ -54,6 +65,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               onChanged: (bool value) {
                 setState(() {
                   isNotifications = value;
+                  settings.isNotifications = value;
                   _updateSettings();
                 });
               },

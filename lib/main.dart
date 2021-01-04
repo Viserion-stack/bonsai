@@ -2,14 +2,23 @@ import 'package:bonsai_app/screens/auth_screen.dart';
 import 'package:bonsai_app/screens/my_account.dart';
 import 'package:bonsai_app/screens/news.dart';
 import 'package:bonsai_app/screens/settings_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'providers/settings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider.value(
+      value: SettingsUser(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

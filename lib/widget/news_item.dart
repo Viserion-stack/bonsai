@@ -31,7 +31,14 @@ class NewsItem extends StatelessWidget {
                   Icons.supervised_user_circle,
                 ),
               ),
-              title: Text(authData[0].username),
+              title: Text(
+                authData[0].username,
+                style: TextStyle(
+                  color: Color(0xFF303030),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30
+                ),
+              ),
             ),
             ClipRRect(
               borderRadius: BorderRadius.only(
