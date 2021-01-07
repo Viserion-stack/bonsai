@@ -39,11 +39,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             SwitchListTile(
               activeColor: Colors.green[600],
-              title: const Text(
+              title: Text(
                 'Dark screen',
                 style: TextStyle(
                   fontSize: 26,
-                  //color: ,
+                  color: isDark ? Colors.white : Color(0xFF303030),
                 ),
               ),
               value: isDark,
@@ -57,9 +57,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
             SwitchListTile(
               activeColor: Colors.green[600],
-              title: const Text(
+              title: Text(
                 'Notifications',
-                style: TextStyle(fontSize: 26),
+                style: TextStyle(
+                  fontSize: 26,
+                  color: isDark ? Colors.white : Color(0xFF303030),
+                ),
               ),
               value: isNotifications,
               onChanged: (bool value) {

@@ -1,5 +1,7 @@
+import 'package:bonsai_app/providers/settings.dart';
 import 'package:bonsai_app/screens/add_post_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../widgets/app_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -48,9 +50,12 @@ class MyAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final settings = Provider.of<SettingsUser>(context);
+    bool isDark = settings.isDark;
     String uid = FirebaseAuth.instance.currentUser.uid;
     var username;
     return Scaffold(
+      backgroundColor: isDark ? Color(0xFF303030) : Colors.white,
       body: FutureBuilder(
         future: FirebaseFirestore.instance.collection('users').doc(uid).get(),
         builder: (context, snapshot) {
@@ -79,8 +84,12 @@ class MyAccount extends StatelessWidget {
                                     child: Text(
                                       username,
                                       style: TextStyle(
-                                          fontSize: 24,
-                                          fontWeight: FontWeight.w800),
+                                        fontSize: 24,
+                                        fontWeight: FontWeight.w800,
+                                        color: isDark
+                                            ? Colors.white70
+                                            : Color(0xFF303030),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -110,7 +119,12 @@ class MyAccount extends StatelessWidget {
                                                 AddPostScreen()),
                                       );
                                     },
-                                    icon: Icon(Icons.add),
+                                    icon: Icon(
+                                      Icons.add,
+                                      color: isDark
+                                          ? Colors.white70
+                                          : Color(0xFF303030),
+                                    ),
                                     iconSize: 40,
                                   ),
                                 ),
@@ -122,7 +136,12 @@ class MyAccount extends StatelessWidget {
                                 child: IconButton(
                                   onPressed: () =>
                                       _onPressedBottomSheet(context),
-                                  icon: Icon(Icons.menu),
+                                  icon: Icon(
+                                    Icons.menu,
+                                    color: isDark
+                                        ? Colors.white70
+                                        : Color(0xFF303030),
+                                  ),
                                   iconSize: 40,
                                 ),
                               ),
@@ -150,13 +169,16 @@ class MyAccount extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
+                                  color:
+                                      isDark ? Colors.white70 : Color(0xFF303030),
                                 ),
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
                                 ),
-                                border: Border.all(width: 1.0),
+                                border: Border.all(width: 1.0, color: isDark ? Colors.white70
+                                        : Color(0xFF303030),),
                               ),
                             ),
                           ),

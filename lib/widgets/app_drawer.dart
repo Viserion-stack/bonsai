@@ -1,13 +1,16 @@
+import 'package:bonsai_app/providers/settings.dart';
 import 'package:bonsai_app/screens/my_account.dart';
 import 'package:bonsai_app/screens/news.dart';
 import 'package:bonsai_app/screens/settings_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final settings = Provider.of<SettingsUser>(context);
     String uid = FirebaseAuth.instance.currentUser.uid;
     var username;
     return Drawer(
@@ -27,11 +30,14 @@ class AppDrawer extends StatelessWidget {
                       .get(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Text(' ',style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Pacifico',
-                        fontSize: 30,
-                      ),);
+                      return Text(
+                        ' ',
+                        style: TextStyle(
+                          color: settings.isDark ? Colors.white : Colors.black,
+                          fontFamily: 'Pacifico',
+                          fontSize: 30,
+                        ),
+                      );
                     }
                     username = snapshot.data['username'];
                     return Text(
@@ -54,7 +60,7 @@ class AppDrawer extends StatelessWidget {
               SingleChildScrollView(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: settings.isDark ? Color(0xFF303030) : Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(220),
@@ -74,20 +80,25 @@ class AppDrawer extends StatelessWidget {
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(90),
                             border: Border.all(
-                              color: Colors.grey[800],
+                              color: settings.isDark
+                                  ? Colors.white
+                                  : Colors.grey[800],
                               width: 2,
                             ),
                           ),
                           child: Icon(
                             Icons.home,
-                            color: Colors.grey[800],
+                            color: settings.isDark
+                                ? Colors.white
+                                : Colors.grey[800],
                             size: 30,
                           ),
                         ),
                         title: Text(
                           'Home',
                           style: TextStyle(
-                            color: Colors.black,
+                            color:
+                                settings.isDark ? Colors.white : Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -103,17 +114,23 @@ class AppDrawer extends StatelessWidget {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(90),
                               border: Border.all(
-                                  color: Colors.grey[800], width: 2)),
+                                  color: settings.isDark
+                                      ? Colors.white
+                                      : Colors.grey[800],
+                                  width: 2)),
                           child: Icon(
                             Icons.settings,
-                            color: Colors.grey[800],
+                            color: settings.isDark
+                                ? Colors.white
+                                : Colors.grey[800],
                             size: 30,
                           ),
                         ),
                         title: Text(
                           'Settings',
                           style: TextStyle(
-                            color: Colors.black,
+                            color:
+                                settings.isDark ? Colors.white : Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -129,16 +146,22 @@ class AppDrawer extends StatelessWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(90),
                                 border: Border.all(
-                                    color: Colors.grey[800], width: 2)),
+                                    color: settings.isDark
+                                        ? Colors.white
+                                        : Colors.grey[800],
+                                    width: 2)),
                             child: Icon(
                               Icons.person,
-                              color: Colors.grey[800],
+                              color: settings.isDark
+                                  ? Colors.white
+                                  : Colors.grey[800],
                               size: 30,
                             )),
                         title: Text(
                           'My Account',
                           style: TextStyle(
-                            color: Colors.black,
+                            color:
+                                settings.isDark ? Colors.white : Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -155,16 +178,22 @@ class AppDrawer extends StatelessWidget {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(90),
                                 border: Border.all(
-                                    color: Colors.grey[800], width: 2)),
+                                    color: settings.isDark
+                                        ? Colors.white
+                                        : Colors.grey[800],
+                                    width: 2)),
                             child: Icon(
                               Icons.exit_to_app,
-                              color: Colors.grey[800],
+                              color: settings.isDark
+                                  ? Colors.white
+                                  : Colors.grey[800],
                               size: 30,
                             )),
                         title: Text(
                           'Logout',
                           style: TextStyle(
-                            color: Colors.black,
+                            color:
+                                settings.isDark ? Colors.white : Colors.black,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
