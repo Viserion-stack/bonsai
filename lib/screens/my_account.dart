@@ -6,6 +6,8 @@ import '../widgets/app_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'edit_profile_screen.dart';
+
 class MyAccount extends StatelessWidget {
   static const routeName = '/myAccount';
 
@@ -159,7 +161,14 @@ class MyAccount extends StatelessWidget {
                             height: 20,
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                EditProfileScreen()),
+                                      );
+                            },
                             child: Container(
                               margin: const EdgeInsets.all(20.0),
                               padding: const EdgeInsets.only(

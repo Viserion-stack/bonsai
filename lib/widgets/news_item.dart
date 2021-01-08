@@ -36,7 +36,7 @@ class NewsItem extends StatelessWidget {
           return InkWell(
             onTap: () {},
             child: Card(
-              color: settings.isDark ? Colors.grey[600] : Colors.white,
+              color: settings.isDark ? Color(0xFF282828) : Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(15),
               ),
@@ -48,7 +48,7 @@ class NewsItem extends StatelessWidget {
                     //tileColor: settings.isDark ? Colors.black54 : Colors.white,
                     leading: CircleAvatar(
                       backgroundImage: NetworkImage(
-                        pict,
+                        pict, // picture of user
                         //'https://youraverageguystyle.com/wp-content/uploads/2018/10/Mens-Fashion-Blogger-ASOS-Grey-T-Shirt-Aviators-Teal-Orange.jpg',
                       ),
                     ),
@@ -68,7 +68,7 @@ class NewsItem extends StatelessWidget {
                     ),
                     child: Image.network(
                       imageUrl.toString(),
-                      height: 250,
+                      height: 460, // high of added picture
                       width: double.infinity,
                       fit: BoxFit.cover,
                     ),
