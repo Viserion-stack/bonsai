@@ -1,4 +1,4 @@
-import 'package:bonsai_app/auth_data.dart';
+
 import 'package:bonsai_app/providers/settings.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

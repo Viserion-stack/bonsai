@@ -1,11 +1,12 @@
 import 'dart:io';
 import 'dart:math';
-import 'package:bonsai_app/screens/my_account.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
+import 'home_screen.dart';
 
 class AddPostScreen extends StatefulWidget {
   @override
@@ -26,6 +27,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
     );
     setState(() {
       _pickedImage = pickedImageFile;
+      
     });
     isPhoto = true;
     //widget.imagePickFn(pickedImageFile);
@@ -42,6 +44,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
         .child(firebaseUser.uid + '.jpg');
 
     await ref.putFile(_pickedImage);
+    
 
     final url = await ref.getDownloadURL();
 
@@ -52,7 +55,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
       'isFavorite': true,
     });
     commentController.clear();
+    
     print('Adding photo...');
+
     Navigator.of(context).pop();
   }
 
@@ -84,7 +89,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
                         //color: Colors.white,
                       ),
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.of(context)
+                              .pushReplacementNamed(HomeScreen.routeName);
                       },
                     ),
                   )

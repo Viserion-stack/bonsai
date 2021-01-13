@@ -1,4 +1,5 @@
 import 'package:bonsai_app/providers/settings.dart';
+import 'package:bonsai_app/screens/home_screen.dart';
 import 'package:bonsai_app/screens/my_account.dart';
 import 'package:bonsai_app/screens/news.dart';
 import 'package:bonsai_app/screens/settings_screen.dart';
@@ -105,7 +106,7 @@ class AppDrawer extends StatelessWidget {
                         ),
                         onTap: () {
                           Navigator.of(context)
-                              .pushReplacementNamed(News.routeName);
+                              .pushReplacementNamed(HomeScreen.routeName);
                         },
                       ),
                       Divider(),

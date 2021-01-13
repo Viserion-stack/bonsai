@@ -1,8 +1,8 @@
 import 'package:bonsai_app/screens/auth_screen.dart';
+import 'package:bonsai_app/screens/home_screen.dart';
 import 'package:bonsai_app/screens/my_account.dart';
 import 'package:bonsai_app/screens/news.dart';
 import 'package:bonsai_app/screens/settings_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (ctx, userSnapshot) {
             if (userSnapshot.hasData) {
-              return News(); //ChatScreen();
+              return HomeScreen(); //ChatScreen();
             }
             return AuthScreen();
           }),
@@ -51,6 +51,7 @@ class MyApp extends StatelessWidget {
         News.routeName: (ctx) => News(),
         MyAccount.routeName: (ctx) => MyAccount(),
         SettingsScreen.routeName: (ctx) => SettingsScreen(),
+        HomeScreen.routeName: (ctx) => HomeScreen(),
         // OrdersScreen.routeName: (ctx) => OrdersScreen(),
         // UserProductsScreen.routeName: (ctx) => UserProductsScreen(),
         // EditProductScreen.routeName: (ctx) => EditProductScreen(),

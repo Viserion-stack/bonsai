@@ -1,4 +1,4 @@
-import 'package:bonsai_app/model/news_data.dart';
+//import 'package:bonsai_app/model/news_data.dart';
 import 'package:bonsai_app/providers/settings.dart';
 import 'package:bonsai_app/widgets/news_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,7 +16,7 @@ class News extends StatefulWidget {
 }
 
 class _NewsState extends State<News> {
-  //final displayedNews = DUMMY_NEWS;
+
   dynamic getSettings;
   bool isDark = false;
   bool isNotif = false;

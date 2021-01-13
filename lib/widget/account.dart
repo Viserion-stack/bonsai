@@ -1,6 +1,4 @@
-import '../screens/side_bar.dart';
 
-import '../screens/home_page.dart';
 import 'package:flutter/material.dart';
 
 class Account extends StatefulWidget {
@@ -21,8 +19,8 @@ class _AccountState extends State<Account> {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          HomePage(),
-          SideBar(),
+          //HomePage(),
+          //SideBar(),
         ],
       ),
     );
