@@ -1,8 +1,12 @@
 
+import 'package:bonsai_app/providers/settings.dart';
 import 'package:bonsai_app/screens/news.dart';
 import 'package:bonsai_app/widgets/app_drawer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -30,13 +34,46 @@ class _HomeScreenState extends State<HomeScreen> {
       _selectedPageIndex = index;
     });
   }
+  dynamic getSettings;
+  bool isDark = false;
+  bool isNotif = false;
+  final uid = FirebaseAuth.instance.currentUser.uid;
+  Future<dynamic> getData() async {
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection('users').doc(uid);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      setState(() {
+        isDark = snapshot.data()['isDark'];
+        isNotif = snapshot.data()['isNotifications'];
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final settings = Provider.of<SettingsUser>(context);
+
+    final uid = FirebaseAuth.instance.currentUser.uid;
+    FirebaseFirestore.instance.collection('users').doc(uid).get();
+    settings.setValues(
+      isDark,
+      isNotif,
+    );
+
+
+    print(settings.isDark);
     return Scaffold(
+      //backgroundColor: settings.isDark ? Color(0xFF303030) : Colors.white,
       drawer: AppDrawer(),
       
       bottomNavigationBar: BottomNavigationBar(
+       backgroundColor: (isDark == true) ? Color(0xFF303030) : Colors.white,
         //currentIndex: _selectedIndex,
         showSelectedLabels: false,
         showUnselectedLabels: false,
@@ -49,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text('HOME'),
             activeIcon: Icon(
               Feather.home,
-              color: Colors.purple,
+              color: Colors.green,
             ),
           ),
           BottomNavigationBarItem(
@@ -60,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text('CALENDAR'),
             activeIcon: Icon(
               FontAwesome.plus_circle,
-              color: Colors.purple,
+              color: Colors.green,
             ),
           ),
           BottomNavigationBarItem(
@@ -72,7 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text('PROFILE'),
             activeIcon: Icon(
               EvilIcons.user,
-              color: Colors.purple,
+              color: Colors.green,
               size: 36,
             ),
           ),

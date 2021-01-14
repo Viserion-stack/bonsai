@@ -51,7 +51,7 @@ class _NewsState extends State<News> {
 
     //Try to write function to get data from data base (values of isDark and isNotifications)
     return Scaffold(
-      backgroundColor: isDark ? Color(0xFF303030) : Colors.white,
+      backgroundColor: settings.isDark ? Color(0xFF303030) : Colors.white,
       drawer: AppDrawer(),
       appBar: AppBar(
         title: Container(
@@ -77,8 +77,8 @@ class _NewsState extends State<News> {
             );
           }
 
-          print('isDark '+isDark.toString());
-          print('isNotif '+isNotif.toString());
+          print('isDark '+settings.isDark.toString());
+          print('isNotif '+settings.isNotifications.toString());
           return ListView(
             children: streamSnapshot.data.docs.map((document) {
               return NewsItem(
