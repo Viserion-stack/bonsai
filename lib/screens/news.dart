@@ -9,6 +9,8 @@ import '../widgets/app_drawer.dart';
 import 'add_post_screen.dart';
 
 class News extends StatefulWidget {
+  bool isDark;
+  News({Key key, this.isDark}) : super(key: key);
   static const routeName = '/news';
 
   @override
@@ -17,39 +19,12 @@ class News extends StatefulWidget {
 
 class _NewsState extends State<News> {
 
-  dynamic getSettings;
-  bool isDark = false;
-  bool isNotif = false;
-  final uid = FirebaseAuth.instance.currentUser.uid;
-  Future<dynamic> getData() async {
-    final DocumentReference document =
-        FirebaseFirestore.instance.collection('users').doc(uid);
-    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
-      setState(() {
-        isDark = snapshot.data()['isDark'];
-        isNotif = snapshot.data()['isNotifications'];
-      });
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getData();
-  }
 
   @override
   Widget build(BuildContext context) {
+    
     final settings = Provider.of<SettingsUser>(context);
 
-    final uid = FirebaseAuth.instance.currentUser.uid;
-    FirebaseFirestore.instance.collection('users').doc(uid).get();
-    settings.setValues(
-      isDark,
-      isNotif,
-    );
-
-    //Try to write function to get data from data base (values of isDark and isNotifications)
     return Scaffold(
       backgroundColor: settings.isDark ? Color(0xFF303030) : Colors.white,
       drawer: AppDrawer(),

@@ -3,6 +3,7 @@ import 'package:bonsai_app/screens/home_screen.dart';
 import 'package:bonsai_app/screens/my_account.dart';
 import 'package:bonsai_app/screens/news.dart';
 import 'package:bonsai_app/screens/settings_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,13 @@ void main() async {
   );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

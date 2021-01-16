@@ -1,4 +1,3 @@
-
 import 'package:bonsai_app/providers/settings.dart';
 import 'package:bonsai_app/screens/news.dart';
 import 'package:bonsai_app/widgets/app_drawer.dart';
@@ -7,8 +6,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:provider/provider.dart';
-
-
 
 import 'add_post_screen.dart';
 import 'my_account.dart';
@@ -22,22 +19,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Widget> _pages = [
-    News(),
-    AddPostScreen(),
-    MyAccount(),
-  ];
-  int _selectedPageIndex = 0;
-
-  void _selectPage(int index) {
-    setState(() {
-      _selectedPageIndex = index;
-    });
-  }
   dynamic getSettings;
   bool isDark = false;
   bool isNotif = false;
+
   final uid = FirebaseAuth.instance.currentUser.uid;
+
   Future<dynamic> getData() async {
     final DocumentReference document =
         FirebaseFirestore.instance.collection('users').doc(uid);
@@ -55,9 +42,24 @@ class _HomeScreenState extends State<HomeScreen> {
     getData();
   }
 
+  int _selectedPageIndex = 0;
+
+  void _selectPage(int index) {
+    setState(() {
+      _selectedPageIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final settings = Provider.of<SettingsUser>(context);
+    final List<Widget> _pages = [
+      News(
+        isDark: settings.isDark,
+      ),
+      AddPostScreen(),
+      MyAccount(),
+    ];
 
     final uid = FirebaseAuth.instance.currentUser.uid;
     FirebaseFirestore.instance.collection('users').doc(uid).get();
@@ -66,14 +68,13 @@ class _HomeScreenState extends State<HomeScreen> {
       isNotif,
     );
 
-
     print(settings.isDark);
     return Scaffold(
       //backgroundColor: settings.isDark ? Color(0xFF303030) : Colors.white,
       drawer: AppDrawer(),
-      
+
       bottomNavigationBar: BottomNavigationBar(
-       backgroundColor: (isDark == true) ? Color(0xFF303030) : Colors.white,
+        backgroundColor: (isDark == true) ? Color(0xFF303030) : Colors.white,
         //currentIndex: _selectedIndex,
         showSelectedLabels: false,
         showUnselectedLabels: false,
