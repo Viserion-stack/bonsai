@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
       isNotif,
     );
 
-    print(settings.isDark);
+    print(_selectedPageIndex);
     return Scaffold(
       //backgroundColor: settings.isDark ? Color(0xFF303030) : Colors.white,
       drawer: AppDrawer(),
@@ -81,38 +81,28 @@ class _HomeScreenState extends State<HomeScreen> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(
-              Feather.home,
-              color: Colors.grey,
+              Icons.home_filled,
+              color: _selectedPageIndex == 0 ? Colors.green : Colors.grey,
+              size: 36,
             ),
             title: Text('HOME'),
-            activeIcon: Icon(
-              Feather.home,
-              color: Colors.green,
-            ),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               FontAwesome.plus_circle,
-              color: Colors.grey,
+              color: _selectedPageIndex == 1 ? Colors.green : Colors.grey,
+              size: 36,
             ),
             title: Text('CALENDAR'),
-            activeIcon: Icon(
-              FontAwesome.plus_circle,
-              color: Colors.green,
-            ),
+            
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              EvilIcons.user,
-              color: Colors.grey,
+              FontAwesome.user_circle,
+              color: (_selectedPageIndex == 2) ? Colors.green : Colors.grey,
               size: 36,
             ),
             title: Text('PROFILE'),
-            activeIcon: Icon(
-              EvilIcons.user,
-              color: Colors.green,
-              size: 36,
-            ),
           ),
         ],
         onTap: _selectPage,
