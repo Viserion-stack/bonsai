@@ -9,7 +9,7 @@ class NewsItem extends StatelessWidget {
   final String id;
   final String description;
   final bool isFavorite;
-  String imageUrl;
+  final String imageUrl;
 
   NewsItem({
     @required this.id,

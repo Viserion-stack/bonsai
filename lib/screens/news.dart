@@ -2,7 +2,6 @@
 import 'package:bonsai_app/providers/settings.dart';
 import 'package:bonsai_app/widgets/news_item.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../widgets/app_drawer.dart';

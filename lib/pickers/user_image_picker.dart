@@ -15,6 +15,7 @@ class _UserImagePickerState extends State<UserImagePicker> {
   File _pickedImage;
 
   void _pickImage() async {
+    // ignore: deprecated_member_use
     final pickedImageFile = await ImagePicker.pickImage(
       source: ImageSource.camera,
       imageQuality: 100,

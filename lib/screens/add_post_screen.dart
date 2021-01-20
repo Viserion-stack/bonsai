@@ -19,11 +19,12 @@ class _AddPostScreenState extends State<AddPostScreen> {
   bool isPhoto = false;
 
   void _pickImage() async {
+    // ignore: deprecated_member_use
     final pickedImageFile = await ImagePicker.pickImage(
       source: ImageSource.camera,
-      imageQuality: 50,
-      maxWidth: 450,
-      maxHeight: 450,
+      imageQuality: 100,
+      //maxWidth: 450,
+      //maxHeight: 450,
     );
     setState(() {
       _pickedImage = pickedImageFile;
@@ -101,18 +102,21 @@ class _AddPostScreenState extends State<AddPostScreen> {
               ),
               Column(
                 children: <Widget>[
+                  
                   Container(
                     decoration: BoxDecoration(
                       color: Colors.grey[800],
+                      
                     ),
+                    
                     height: 300,
-                    width: MediaQuery.of(context).size.width,
+                    width:300,//MediaQuery.of(context).size.width,
                     child: _pickedImage == null
-                        ? null
+                        ? Image.asset('assets/images/camera_tree.png')
                         : FittedBox(
                             child: Image.file(
                               _pickedImage,
-                              scale: 50,
+                              //scale: 50,
                             ),
                             fit: BoxFit.fill,
                           ),

@@ -85,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: _selectedPageIndex == 0 ? Colors.green : Colors.grey,
               size: 36,
             ),
+            // ignore: deprecated_member_use
             title: Text('HOME'),
           ),
           BottomNavigationBarItem(
@@ -93,6 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: _selectedPageIndex == 1 ? Colors.green : Colors.grey,
               size: 36,
             ),
+            // ignore: deprecated_member_use
             title: Text('CALENDAR'),
             
           ),
@@ -102,6 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: (_selectedPageIndex == 2) ? Colors.green : Colors.grey,
               size: 36,
             ),
+            // ignore: deprecated_member_use
             title: Text('PROFILE'),
           ),
         ],
