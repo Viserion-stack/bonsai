@@ -150,6 +150,16 @@ class MyAccount extends StatelessWidget {
                             ],
                           ),
                           Container(
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 10,
+                                  color: Colors.black54,
+                                  spreadRadius: 5,
+                                ),
+                              ],
+                            ),
                             child: CircleAvatar(
                               radius: 60,
                               backgroundColor: Colors.transparent,
@@ -163,11 +173,10 @@ class MyAccount extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                EditProfileScreen()),
-                                      );
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => EditProfileScreen()),
+                              );
                             },
                             child: Container(
                               margin: const EdgeInsets.all(20.0),
@@ -178,16 +187,21 @@ class MyAccount extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.bold,
-                                  color:
-                                      isDark ? Colors.white70 : Color(0xFF303030),
+                                  color: isDark
+                                      ? Colors.white70
+                                      : Color(0xFF303030),
                                 ),
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.all(
                                   Radius.circular(10),
                                 ),
-                                border: Border.all(width: 1.0, color: isDark ? Colors.white70
-                                        : Color(0xFF303030),),
+                                border: Border.all(
+                                  width: 1.0,
+                                  color: isDark
+                                      ? Colors.white70
+                                      : Color(0xFF303030),
+                                ),
                               ),
                             ),
                           ),
