@@ -22,6 +22,8 @@ class _HomeScreenState extends State<HomeScreen> {
   dynamic getSettings;
   bool isDark = false;
   bool isNotif = false;
+  String userName = '';
+  String email = '';
 
   final uid = FirebaseAuth.instance.currentUser.uid;
 
@@ -32,6 +34,8 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         isDark = snapshot.data()['isDark'];
         isNotif = snapshot.data()['isNotifications'];
+        userName = snapshot.data()['username'];
+        email = snapshot.data()['email'];
       });
     });
   }
@@ -66,6 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
     settings.setValues(
       isDark,
       isNotif,
+      userName,
+      email,
     );
 
     print(_selectedPageIndex);
@@ -96,7 +102,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             // ignore: deprecated_member_use
             title: Text('CALENDAR'),
-            
           ),
           BottomNavigationBarItem(
             icon: Icon(

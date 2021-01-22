@@ -1,15 +1,45 @@
 import 'package:bonsai_app/providers/settings.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class EditProfileScreen extends StatelessWidget {
+class EditProfileScreen extends StatefulWidget {
+  @override
+  _EditProfileScreenState createState() => _EditProfileScreenState();
+}
+
+class _EditProfileScreenState extends State<EditProfileScreen> {
+  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
+    final uid = FirebaseAuth.instance.currentUser.uid;
     final settings = Provider.of<SettingsUser>(context);
+
+    void saveChanges() {
+    if(emailController.text != ""){
+      settings.email = emailController.text;
+      FirebaseFirestore.instance.collection('users').doc(uid).update({
+      'email': emailController.text,
+      });
+    }
+    else settings.email = settings.email;
+    if(usernameController.text != ""){
+      FirebaseFirestore.instance.collection('users').doc(uid).update({
+      'username': usernameController.text,
+    });
+    settings.userName = usernameController.text;
+    }
+  }
     return Scaffold(
       backgroundColor: settings.isDark ? Color(0xFF303030) : Colors.white,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          saveChanges();
+          Navigator.of(context).pop();
+        },
         child: Icon(Icons.done),
         backgroundColor: Colors.green,
       ),
@@ -125,8 +155,9 @@ class EditProfileScreen extends StatelessWidget {
                     left: 10,
                   ),
                   child: TextField(
+                    controller: usernameController,
                     decoration: InputDecoration(
-                        hintText: 'Pan Pawel',
+                        hintText: settings.userName.toString(),
                         hintStyle: TextStyle(
                           color: settings.isDark
                               ? Colors.white
@@ -178,8 +209,9 @@ class EditProfileScreen extends StatelessWidget {
                     left: 10,
                   ),
                   child: TextField(
+                    controller: emailController,
                     decoration: InputDecoration(
-                        hintText: 'admin@admin.com',
+                        hintText: settings.email.toString(),
                         hintStyle: TextStyle(
                           color: settings.isDark
                               ? Colors.white
@@ -231,7 +263,7 @@ class EditProfileScreen extends StatelessWidget {
                   ),
                   child: TextField(
                     decoration: InputDecoration(
-                        hintText: 'password',
+                        hintText: '********',
                         hintStyle: TextStyle(
                           color: settings.isDark
                               ? Colors.white
