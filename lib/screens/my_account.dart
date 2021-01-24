@@ -11,6 +11,10 @@ import 'edit_profile_screen.dart';
 class MyAccount extends StatelessWidget {
   static const routeName = '/myAccount';
 
+  List<String> posts = [];
+
+  MyAccount({Key key, this.posts}) : super(key: key);
+
   //final userData =  FirebaseFirestore.instance.collection('users').doc(uid);
 
   //final imageView = DUMMY_NEWS;
@@ -41,20 +45,22 @@ class MyAccount extends StatelessWidget {
         });
   }
 
-  void countDocuments() async {
-    QuerySnapshot _myDoc =
-        await FirebaseFirestore.instance.collection('posts').get();
-    List<DocumentSnapshot> _myDocCount = _myDoc.docs;
-    print('AAA');
-    print(_myDocCount.length);
-    print("BBB");
-  }
-
   @override
   Widget build(BuildContext context) {
+    String uid = FirebaseAuth.instance.currentUser.uid;
+
+    void countDocuments() async {
+      QuerySnapshot _myDoc =
+          await FirebaseFirestore.instance.collection('posts').get();
+      List<DocumentSnapshot> _myDocCount = _myDoc.docs;
+      print('AAA');
+      print(_myDocCount.length);
+      print("BBB");
+    }
+
     final settings = Provider.of<SettingsUser>(context);
     bool isDark = settings.isDark;
-    String uid = FirebaseAuth.instance.currentUser.uid;
+    
     var username;
     return Scaffold(
       backgroundColor: isDark ? Color(0xFF303030) : Colors.white,
@@ -209,6 +215,7 @@ class MyAccount extends StatelessWidget {
                             height: 20,
                           ),
                           Expanded(
+                            
                             child: Container(
                               padding: EdgeInsets.all(19.0),
                               child: GridView.count(
@@ -216,12 +223,9 @@ class MyAccount extends StatelessWidget {
                                 crossAxisCount: 3,
                                 crossAxisSpacing: 2.0,
                                 mainAxisSpacing: 2.0,
-                                children: <Widget>[
-                                  // Image.network(imageView[0].imageUrl),
-                                  // Image.network(imageView[1].imageUrl),
-                                  // Image.network(imageView[2].imageUrl),
-                                  // Image.network(imageView[3].imageUrl),
-                                ],
+                                children: 
+                                 List.generate(posts.length,
+                                     (index) => Image.network(posts[index])),
                               ),
                             ),
                           ),

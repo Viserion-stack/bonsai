@@ -17,7 +17,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     final uid = FirebaseAuth.instance.currentUser.uid;
     final settings = Provider.of<SettingsUser>(context);
-
+    
     void saveChanges() {
     if(emailController.text != ""){
       settings.email = emailController.text;

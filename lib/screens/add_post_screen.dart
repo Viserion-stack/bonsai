@@ -54,6 +54,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
       'description': commentController.text.toString(),
       'imageUrl': url,
       'isFavorite': true,
+      'userId' : firebaseUser,
     });
     commentController.clear();
     

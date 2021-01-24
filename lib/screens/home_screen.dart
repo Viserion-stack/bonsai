@@ -11,7 +11,8 @@ import 'add_post_screen.dart';
 import 'my_account.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key key}) : super(key: key);
+  List userPosts = [];
+  HomeScreen({Key key, this.userPosts}) : super(key: key);
   static const routeName = '/homeScreen';
 
   @override
@@ -56,13 +57,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     final settings = Provider.of<SettingsUser>(context);
     final List<Widget> _pages = [
       News(
         isDark: settings.isDark,
       ),
       AddPostScreen(),
-      MyAccount(),
+      MyAccount(posts: widget.userPosts,),
     ];
 
     final uid = FirebaseAuth.instance.currentUser.uid;
