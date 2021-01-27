@@ -1,5 +1,6 @@
 import 'package:bonsai_app/providers/settings.dart';
 import 'package:bonsai_app/screens/news.dart';
+import 'package:bonsai_app/screens/search_screen.dart';
 import 'package:bonsai_app/widgets/app_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -57,16 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    
-    final settings = Provider.of<SettingsUser>(context);
-    final List<Widget> _pages = [
-      News(
-        isDark: settings.isDark,
-      ),
-      AddPostScreen(),
-      MyAccount(posts: widget.userPosts,),
-    ];
 
+    final settings = Provider.of<SettingsUser>(context);
     final uid = FirebaseAuth.instance.currentUser.uid;
     FirebaseFirestore.instance.collection('users').doc(uid).get();
     settings.setValues(
@@ -75,44 +68,70 @@ class _HomeScreenState extends State<HomeScreen> {
       userName,
       email,
     );
+    
+     List<Widget> _pages = [
+      News(
+        isDark: settings.isDark,
+      ),
+      AddPostScreen(),
+      MyAccount(
+        posts: widget.userPosts,
+      ),
+      SearchScreen(),
+    ];
+
+    
 
     print(_selectedPageIndex);
     return Scaffold(
-      //backgroundColor: settings.isDark ? Color(0xFF303030) : Colors.white,
+      backgroundColor: settings.isDark ? Color(0xFF303030) : Colors.white,
       drawer: AppDrawer(),
 
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        elevation: 0,
         backgroundColor: (isDark == true) ? Color(0xFF303030) : Colors.white,
         //currentIndex: _selectedIndex,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: [
           BottomNavigationBarItem(
+            
+             backgroundColor: (isDark == true) ? Color(0xFF303030) : Colors.white,
             icon: Icon(
               Icons.home_filled,
-              color: _selectedPageIndex == 0 ? Colors.green : Colors.grey,
-              size: 36,
+              color: (_selectedPageIndex == 0) ? Colors.green : Colors.grey,
+              size: 33,
             ),
             // ignore: deprecated_member_use
-            title: Text('HOME'),
+            title: Text('Home'),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               FontAwesome.plus_circle,
-              color: _selectedPageIndex == 1 ? Colors.green : Colors.grey,
-              size: 36,
+              color: (_selectedPageIndex == 1) ? Colors.green : Colors.grey,
+              size: 33,
             ),
             // ignore: deprecated_member_use
-            title: Text('CALENDAR'),
+            title: Text('ADD'),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               FontAwesome.user_circle,
               color: (_selectedPageIndex == 2) ? Colors.green : Colors.grey,
-              size: 36,
+              size: 33,
             ),
             // ignore: deprecated_member_use
             title: Text('PROFILE'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              FontAwesome.search,
+              color: (_selectedPageIndex == 3) ? Colors.green : Colors.grey,
+              size: 33,
+            ),
+            // ignore: deprecated_member_use
+            title: Text('Search'),
           ),
         ],
         onTap: _selectPage,
