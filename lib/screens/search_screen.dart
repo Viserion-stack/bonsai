@@ -16,7 +16,7 @@ class _SearchScreenState extends State<SearchScreen> {
       backgroundColor: settings.isDark ? Color(0xFF303030) : Colors.white ,
       body: Container(
         child: Center(
-          child: Text("Search..."),
+          child: Text("Search...", style: TextStyle(color: settings.isDark ? Colors.grey : Colors.black),),
         ),
       ),
     );

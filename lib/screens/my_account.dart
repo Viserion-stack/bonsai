@@ -21,25 +21,49 @@ class MyAccount extends StatelessWidget {
 
   void _onPressedBottomSheet(BuildContext context) {
     showModalBottomSheet(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(60.0), topRight: Radius.circular(60.0)),
+        ),
         context: context,
-        builder: (context) {
+        builder: (builder) {
           return Container(
-              width: MediaQuery.of(context).size.width,
+              //width: MediaQuery.of(context).size.width,
+              //color: Colors.transparent,
               height: 180,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).canvasColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: const Radius.circular(20),
-                    topRight: const Radius.circular(20),
-                  )),
               child: Column(
                 children: <Widget>[
-                  Container(
-                    child: Icon(Icons.arrow_drop_down),
+                  SizedBox(
+                    height: 50,
                   ),
-                  Center(
-                    child: Text('authData'),
+                   Padding(
+                     padding: const EdgeInsets.only(left: 100.0),
+                     child: ListTile(
+                       onTap: (){},
+                            leading: Icon(Icons.settings, size: 26),
+                            title: Text(
+                              'Settings',
+                              style: TextStyle(
+                                fontSize: 24,
+                              ),
+                            )),
+                   ),
+                    
+                  SizedBox(
+                    height: 5,
                   ),
+                  Padding(
+                     padding: const EdgeInsets.only(left: 100.0),
+                     child: ListTile(
+                       onTap: (){},
+                            leading: Icon(Icons.logout, size: 26),
+                            title: Text(
+                              'Logout',
+                              style: TextStyle(
+                                fontSize: 24,
+                              ),
+                            )),
+                   ),
                 ],
               ));
         });
@@ -60,7 +84,7 @@ class MyAccount extends StatelessWidget {
 
     final settings = Provider.of<SettingsUser>(context);
     bool isDark = settings.isDark;
-    
+
     var username;
     return Scaffold(
       backgroundColor: isDark ? Color(0xFF303030) : Colors.white,
@@ -215,7 +239,6 @@ class MyAccount extends StatelessWidget {
                             height: 20,
                           ),
                           Expanded(
-                            
                             child: Container(
                               padding: EdgeInsets.all(19.0),
                               child: GridView.count(
@@ -223,9 +246,8 @@ class MyAccount extends StatelessWidget {
                                 crossAxisCount: 3,
                                 crossAxisSpacing: 2.0,
                                 mainAxisSpacing: 2.0,
-                                children: 
-                                 List.generate(posts.length,
-                                     (index) => Image.network(posts[index])),
+                                children: List.generate(posts.length,
+                                    (index) => Image.network(posts[index])),
                               ),
                             ),
                           ),
